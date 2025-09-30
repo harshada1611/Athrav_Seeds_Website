@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Athrav Agro Seeds</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #1a5c38; /* Deep green for trust */
+      --secondary-green: #34c759; /* Vibrant green for growth */
+      --accent-orange: #f28c38; /* Warm orange for energy */
+      --light-bg: #f5f9f6; /* Soft green-gray background */
+      --dark-text: #1a1a1a; /* Dark text for contrast */
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+/* Navbar */
+        .navbar {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: white;
+      height: 82px;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand img:hover {
+      transform: rotate(360deg);
+    }
+
+    .navbar-brand span {
+      color: var(--accent-orange);
+    }
+
+    .nav-link {
+      font-weight: 600;
+      color: var(--primary-green);
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-orange);
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(26, 92, 56, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    .navbar-brand img {
+  width: 80px; /* Increase width */
+  height: auto; /* Keep aspect ratio */
+}
+
+
+    /* Page Header */
+    .page-header {
+      position: relative;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('images/gallery.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 100px 0;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .breadcrumb {
+      justify-content: center;
+      background: transparent;
+      margin-bottom: 0;
+    }
+
+    .breadcrumb-item a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .breadcrumb-item a:hover {
+      color: var(--accent-orange);
+    }
+
+    .breadcrumb-item.active {
+      color: var(--white);
+    }
+
+    .breadcrumb-item+.breadcrumb-item::before {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 6px;
+      background: linear-gradient(to right, var(--accent-orange), var(--secondary-green));
+      border-radius: 3px;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: var(--white);
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    /* Gallery */
+    .gallery-section {
+      padding: 100px 0;
+      background: url('/images/background1.png');
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 250px;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      border: 2px solid var(--accent-orange);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: var(--white);
+      padding: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .lightbox-caption {
+      color: var(--white);
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .close, .prev, .next {
+      position: absolute;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close:hover, .prev:hover, .next:hover {
+      background: var(--secondary-green);
+    }
+
+    .close {
+      top: 20px;
+      right: 20px;
+    }
+
+    .prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: var(--white);
+      padding: 60px 0 20px;
+    }
+
+    footer h5 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent-orange);
+    }
+
+    .social-icons a {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--accent-orange);
+      transform: translateY(-5px);
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-orange);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--secondary-green);
+      transform: translateY(-5px);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .page-header h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .gallery-item {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .page-header {
+        padding: 80px 0;
+        background-attachment: scroll;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .gallery-section {
+        padding: 60px 0;
+      }
+
+      .filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        height: 35px;
+      }
+
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .gallery-item {
+        height: 180px;
+      }
+
+      .overlay h3 {
+        font-size: 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.jpg" alt="Athrav Agro Seeds Logo">
+        Athrav<span> Agro Seeds</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1 class="animate-on-scroll">Our Gallery</h1>
+      <p class="animate-on-scroll">From seed to harvest – our journey in pictures</p>
+      <nav aria-label="breadcrumb" class="animate-on-scroll">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Explore Our Journey</h2>
+      <div class="filter-buttons animate-on-scroll">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="seeds">Seeds</button>
+        <button class="filter-btn" data-filter="farms">Farms</button>
+        <button class="filter-btn" data-filter="processing">Processing</button>
+      </div>
+
+      <div class="gallery">
+        <!-- Seeds -->
+        <div class="gallery-item animate-on-scroll" data-category="seeds">
+          <img src="images/red.jpg" alt="Premium Onion Seeds">
+          <div class="overlay"><h3>Premium Onion Seeds</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="seeds">
+          <img src="images/yellow.jpg" alt="Seed Packaging">
+          <div class="overlay"><h3>Seed Packaging</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="seeds">
+          <img src="images/red.jpg" alt="Red Onion Seeds">
+          <div class="overlay"><h3>Red Onion Seeds</h3></div>
+        </div>
+
+        <!-- Farms -->
+        <div class="gallery-item animate-on-scroll" data-category="farms">
+          <img src="images/farm1.jpg" alt="Onion Fields">
+          <div class="overlay"><h3>Onion Fields</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="farms">
+          <img src="images/farm2.jpg" alt="Farmers with Harvest">
+          <div class="overlay"><h3>Farmers with Harvest</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="farms">
+          <img src="images/farm3.jpg" alt="Farmers Market">
+          <div class="overlay"><h3>Farmers Market</h3></div>
+        </div>
+
+        <!-- Processing -->
+        <div class="gallery-item animate-on-scroll" data-category="processing">
+          <img src="images/production1.jpg" alt="Modern Processing Facility">
+          <div class="overlay"><h3>Modern Processing Facility</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="processing">
+          <img src="images/production2.jpg" alt="Packaging Process">
+          <div class="overlay"><h3>Packaging Process</h3></div>
+        </div>
+        <div class="gallery-item animate-on-scroll" data-category="processing">
+          <img src="images/production3.jpg" alt="Storage Facility">
+          <div class="overlay"><h3>Storage Facility</h3></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="">
+      <span class="close"><i class="fas fa-times"></i></span>
+      <span class="prev"><i class="fas fa-chevron-left"></i></span>
+      <span class="next"><i class="fas fa-chevron-right"></i></span>
+      <div class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h5>Athrav Agro Seeds</h5>
+          <p>Delivering premium onion seeds to farmers for over 20 years. We are committed to quality, sustainability, and farmer success.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Farm Road, Agricultural Zone, India</li>
+            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope me-2"></i> info@athravagroseeds.com</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="mt-4 mb-4" style="border-color: rgba(255, 255, 255, 0.2);">
+      <div class="text-center">
+        <p>&copy; 2025 Athrav Agro Seeds. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Gallery and Lightbox Script -->
+  <script>
+    // Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+          item.style.display = 'none';
+          item.classList.remove('animate-on-scroll');
+          
+          setTimeout(() => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              item.style.display = 'block';
+              item.classList.add('animate-on-scroll');
+            }
+          }, 100);
+        });
+      });
+    });
+
+    // Lightbox Functionality
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImg = document.querySelector('.lightbox-content img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentImageIndex = 0;
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+
+    // Open Lightbox
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentImageIndex = index;
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close Lightbox
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Navigate Previous
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+      updateLightbox();
+    });
+
+    // Navigate Next
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+      updateLightbox();
+    });
+
+    // Close on Outside Click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        } else if (e.key === 'ArrowLeft') {
+          currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+          updateLightbox();
+        } else if (e.key === 'ArrowRight') {
+          currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+          updateLightbox();
+        }
+      }
+    });
+
+    // Touch Swipe Navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) {
+        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+        updateLightbox();
+      } else if (touchEndX - touchStartX > 50) {
+        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+        updateLightbox();
+      }
+    });
+
+    // Update Lightbox Content
+    function updateLightbox() {
+      const activeImage = galleryItems[currentImageIndex].querySelector('img');
+      const activeCaption = galleryItems[currentImageIndex].querySelector('.overlay h3').textContent;
+      lightboxImg.src = activeImage.src;
+      lightboxImg.alt = activeImage.alt;
+      lightboxCaption.textContent = activeCaption;
+    }
+
+    // Scroll Animations and Back to Top
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('visible');
+          element.style.opacity = '1';
+          element.style.animation = 'fadeInUp 0.8s ease forwards';
+        }
+      });
+    };
+
+    const toggleBackToTop = () => {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    };
+
+    window.addEventListener('scroll', () => {
+      animateOnScroll();
+      toggleBackToTop();
+    });
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>
